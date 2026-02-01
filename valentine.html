@@ -1,224 +1,422 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Will You Be My Valentine? 💌</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF1744;
+            --primary-light: #FF5177;
+            --primary-dark: #C4001D;
+            --accent: #FFD700;
+            --bg-start: #1a0a1f;
+            --bg-end: #2d1b3d;
+            --text-light: #ffffff;
+            --text-muted: #b8a4c9;
+        }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-      color: #333;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .container {
-      text-align: center;
-      padding: 30px;
-      max-width: 90%;
-      z-index: 10;
-    }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
 
-    h1 {
-      font-size: clamp(2.1rem, 6vw, 3.8rem);
-      margin-bottom: 1.2rem;
-      color: #fff;
-      text-shadow: 0 4px 15px rgba(0,0,0,0.25);
-      font-weight: 700;
-    }
+        /* Animated background particles */
+        .bg-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-light), transparent);
+            opacity: 0.1;
+            animation: float-particle 20s infinite ease-in-out;
+        }
 
-    h1 span {
-      color: #ff4757;
-    }
+        @keyframes float-particle {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, -100px) scale(1.2); }
+            66% { transform: translate(-100px, 100px) scale(0.8); }
+        }
 
-    .subtitle {
-      font-size: clamp(1.1rem, 4vw, 1.5rem);
-      margin-bottom: 2.5rem;
-      color: #fff;
-      opacity: 0.95;
-    }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 80px 60px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            animation: fadeInScale 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      flex-wrap: wrap;
-      position: relative;
-    }
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
-    button {
-      font-family: inherit;
-      font-size: clamp(1.2rem, 4vw, 1.6rem);
-      font-weight: 600;
-      padding: 0.9rem 2.4rem;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.18);
-    }
+        .signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2em;
+            color: var(--accent);
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeInDown 0.6s ease-out 0.3s forwards;
+        }
 
-    #yesBtn {
-      background: #ff4757;
-      color: white;
-    }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    #yesBtn:hover {
-      background: #e84118;
-      transform: translateY(-4px) scale(1.08);
-      box-shadow: 0 12px 35px rgba(232,65,24,0.4);
-    }
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4em;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.5s forwards;
+        }
 
-    #noBtn {
-      background: #2f3542;
-      color: #dfe4ea;
-      position: relative;
-      user-select: none;
-    }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    #noBtn:hover {
-      background: #1e272e;
-    }
+        .question {
+            font-size: 1.6em;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.7s forwards;
+        }
 
-    .balloon {
-      position: absolute;
-      width: 80px;
-      height: 100px;
-      background: radial-gradient(circle at 30% 30%, #fff, transparent 60%);
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(100vh);
-      animation: float 8s forwards;
-      box-shadow: inset -10px -10px 30px rgba(0,0,0,0.15);
-    }
+        .button-container {
+            position: relative;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.9s forwards;
+        }
 
-    .balloon::after {
-      content: "";
-      position: absolute;
-      width: 2px;
-      height: 120px;
-      background: rgba(0,0,0,0.25);
-      bottom: -120px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+        button {
+            padding: 24px 60px;
+            font-size: 1.4em;
+            font-weight: 600;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
 
-    @keyframes float {
-      0%   { transform: translateY(120vh) scale(0.6); opacity: 0.7; }
-      10%  { opacity: 1; }
-      100% { transform: translateY(-150vh) scale(1.1); opacity: 0; }
-    }
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
 
-    .heart {
-      color: #ff4757;
-      font-size: 1.4em;
-      margin: 0 6px;
-    }
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
 
-    @media (max-width: 500px) {
-      .buttons {
-        flex-direction: column;
-        gap: 1.8rem;
-      }
-      button {
-        padding: 1rem 3rem;
-      }
-    }
-  </style>
+        #yesBtn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--text-light);
+            box-shadow: 0 10px 40px rgba(255, 23, 68, 0.4);
+        }
+
+        #yesBtn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(255, 23, 68, 0.6);
+        }
+
+        #noBtn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: absolute;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        #noBtn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .celebration {
+            display: none;
+            text-align: center;
+        }
+
+        .celebration.active {
+            display: block;
+            animation: celebrationPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes celebrationPop {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .celebration h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5em;
+            background: linear-gradient(135deg, var(--accent), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .celebration p {
+            font-size: 1.8em;
+            color: var(--text-light);
+            margin: 15px 0;
+        }
+
+        .celebration .hearts {
+            font-size: 3em;
+            margin: 30px 0;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .celebration .subtext {
+            font-size: 1.3em;
+            color: var(--text-muted);
+            margin-top: 40px;
+            font-weight: 300;
+        }
+
+        .balloon {
+            position: fixed;
+            width: 60px;
+            height: 80px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float-balloon 4s ease-in-out;
+            z-index: 1000;
+            filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            width: 20px;
+            height: 25px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), transparent);
+        }
+
+        @keyframes float-balloon {
+            0% {
+                transform: translateY(100vh) rotate(0deg) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-150vh) rotate(720deg) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 60px 30px;
+            }
+            
+            h1 {
+                font-size: 2.8em;
+            }
+            
+            .question {
+                font-size: 1.3em;
+            }
+            
+            button {
+                padding: 20px 40px;
+                font-size: 1.2em;
+            }
+            
+            .celebration h2 {
+                font-size: 3.5em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Animated background particles -->
+    <div class="bg-particle" style="width: 300px; height: 300px; top: 10%; left: 10%; animation-delay: 0s;"></div>
+    <div class="bg-particle" style="width: 200px; height: 200px; top: 60%; right: 15%; animation-delay: 3s;"></div>
+    <div class="bg-particle" style="width: 250px; height: 250px; bottom: 10%; left: 50%; animation-delay: 6s;"></div>
 
-  <div class="container">
-    <h1>Hey there!<br>Will you be my<br><span>Valentine</span> <span class="heart">❤️</span>?</h1>
-    <p class="subtitle">From your friend, <strong>Samuel</strong></p>
+    <div class="container">
+        <div id="question-screen">
+            <div class="signature">FROM SAMUEL</div>
+            <h1>Be My Valentine?</h1>
+            <p class="question">Will you go on a Valentine's date with me?</p>
+            <div class="button-container">
+                <button id="yesBtn">Yes! ♥</button>
+                <button id="noBtn">No</button>
+            </div>
+        </div>
 
-    <div class="buttons">
-      <button id="yesBtn">Yes 💖</button>
-      <button id="noBtn">No 😕</button>
+        <div class="celebration" id="celebration">
+            <h2>Amazing!</h2>
+            <p>I'm so happy you said yes!</p>
+            <div class="hearts">💕 💖 💗 💓 💞</div>
+            <p class="subtext">Can't wait for our Valentine's date together!</p>
+        </div>
     </div>
-  </div>
 
-  <script>
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn  = document.getElementById('noBtn');
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const questionScreen = document.getElementById('question-screen');
+        const celebration = document.getElementById('celebration');
 
-    // Yes → celebration
-    yesBtn.addEventListener('click', () => {
-      document.body.style.background = "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)";
-      
-      // Confetti / balloons
-      for(let i = 0; i < 40; i++) {
-        setTimeout(() => {
-          createBalloon();
-        }, i * 120);
-      }
+        // Yes button click handler
+        yesBtn.addEventListener('click', () => {
+            questionScreen.style.display = 'none';
+            celebration.classList.add('active');
+            createBalloons();
+        });
 
-      // Change text
-      document.querySelector('h1').innerHTML = 
-        "YAAAY!!! 🎉<br>I'm the happiest person today!<br>Thank youuu 💕";
+        // No button hover/click handler - makes it dodge
+        noBtn.addEventListener('mouseenter', moveNoButton);
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
 
-      document.querySelector('.subtitle').innerHTML = 
-        "Samuel is already planning the best date ever 😍";
+        // Touch support for mobile
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
 
-      // Disable both buttons
-      yesBtn.disabled = true;
-      noBtn.style.display = "none";
-    });
+        function moveNoButton() {
+            const container = document.querySelector('.button-container');
+            const containerRect = container.getBoundingClientRect();
+            
+            // Random position within the container
+            const maxX = containerRect.width - noBtn.offsetWidth - 40;
+            const maxY = containerRect.height - noBtn.offsetHeight - 40;
+            
+            const randomX = (Math.random() - 0.5) * maxX;
+            const randomY = (Math.random() - 0.5) * maxY;
+            
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
 
-    // No → run away (with some randomness)
-    noBtn.addEventListener('mouseover', (e) => {
-      const btn = e.target;
-      const maxX = window.innerWidth - btn.offsetWidth - 40;
-      const maxY = window.innerHeight - btn.offsetHeight - 40;
-
-      const newX = Math.random() * maxX;
-      const newY = Math.random() * maxY;
-
-      btn.style.position = 'fixed';
-      btn.style.left = newX + 'px';
-      btn.style.top  = newY + 'px';
-      btn.style.transition = 'all 0.4s ease-out';
-    });
-
-    // Also run when trying to click
-    noBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      noBtn.style.transform = 'scale(1.3)';
-      setTimeout(() => {
-        noBtn.style.transform = 'scale(1)';
-      }, 200);
-    });
-
-    function createBalloon() {
-      const balloon = document.createElement('div');
-      balloon.className = 'balloon';
-      
-      // Random color & position
-      const colors = ['#ff6b6b','#4ecdc4','#45b7d1','#96c93d','#feca57','#ff9ff3','#ff4757','#1e90ff'];
-      balloon.style.background = colors[Math.floor(Math.random()*colors.length)];
-      balloon.style.left = Math.random() * 100 + 'vw';
-      balloon.style.animationDuration = (6 + Math.random()*5) + 's';
-      
-      document.body.appendChild(balloon);
-
-      setTimeout(() => {
-        balloon.remove();
-      }, 12000);
-    }
-  </script>
+        function createBalloons() {
+            const colors = [
+                '#FF1744', '#F50057', '#E91E63', '#FF4081', 
+                '#FFD700', '#FFC107', '#FF6B9D', '#FF80AB',
+                '#FF5177', '#C51162'
+            ];
+            
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const balloon = document.createElement('div');
+                    balloon.className = 'balloon';
+                    balloon.style.left = Math.random() * 100 + '%';
+                    balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    balloon.style.animationDelay = Math.random() * 0.8 + 's';
+                    balloon.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    
+                    document.body.appendChild(balloon);
+                    
+                    setTimeout(() => {
+                        balloon.remove();
+                    }, 7000);
+                }, i * 80);
+            }
+        }
+    </script>
 </body>
 </html>
